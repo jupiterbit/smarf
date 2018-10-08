@@ -1,4 +1,14 @@
+/*  Información de la tabla Card
+	_id:        // 
+	idCard:     // 
+	codeBus:    // identificador de cada Bus
+	idDevice:   // id del Dispositivo
+	timeDevice: // Hora del ardino
+	timestamp:  // 
+*/
+
 'use strict'
+
 //modulos
 var fs = require('fs');
 var path = require('path');
@@ -16,13 +26,6 @@ function pruebas(req,res){
 	});
 }
 
-/*
-	key: String,
-	pin: String,
-	serial: String,
-	created_at: String
-*/
-
 function saveCard(req,res){
 
 	//Crear objeto de card
@@ -31,12 +34,13 @@ function saveCard(req,res){
 	//Recoger parametros peticion
 	var params = req.body;
 
-	if(params.key){
+	if(params.idCard && params.codeBus && params.idDevice && params.timeDevice && params.timestamp ){
 
-		card.key=params.key;
-		card.pin=params.pin;
-		card.serial=params.serial;
-		card.created_at=params.created_at;		
+		card.idCard=params.idCard;
+		card.codeBus=params.codeBus;
+		card.idDevice=params.idDevice;
+		card.timeDevice=params.timeDevice;
+		card.timestamp=params.timestamp;	
 
 		card.save((err,cardStored)=>{
 			if (err) {
@@ -50,7 +54,7 @@ function saveCard(req,res){
 			}
 		});
 	}else{
-		res.status(200).send({menssage: 'El nombre del card es obligatorio'});
+		res.status(200).send({menssage: 'Todos los campos son obligatorios'});
 	}
 }
 

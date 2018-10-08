@@ -4,10 +4,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CardSchema=Schema({
-	key: String,
-	pin: String,
-	serial: String,
-	created_at: String
+	_id: mongoose.Types.ObjectId(),
+	idCard: { type: String, require: true },	
+	codeBus: { type: String, require: true },      // identificador de cada Bus
+	idDevice: { type: String, require: true },     // id del Dispositivo
+	timeDevice: { type: String, require: true },   // Hora del ardino
+	timestamp: { type: Date , default: Date.now }
 	//user: { type: Schema.ObjectId, ref:'User' }
 })
 
