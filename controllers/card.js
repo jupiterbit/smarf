@@ -1,10 +1,9 @@
 /*  Información de la tabla Card
-	_id:        // 
-	idCard:     // 
+	_id:        //
+	idCard:     //
 	codeBus:    // identificador de cada Bus
 	idDevice:   // id del Dispositivo
 	timeDevice: // Hora del ardino
-	timestamp:  // 
 */
 
 'use strict'
@@ -26,6 +25,7 @@ function pruebas(req,res){
 	});
 }
 
+// REquieresd: params.id_card && params.codeBus && params.idDevice && params.timeDevice && params.timestamp
 function saveCard(req,res){
 
 	//Crear objeto de card
@@ -34,13 +34,12 @@ function saveCard(req,res){
 	//Recoger parametros peticion
 	var params = req.body;
 
-	if(params.idCard && params.codeBus && params.idDevice && params.timeDevice && params.timestamp ){
+	if(params.id_card && params.codeBus && params.idDevice && params.timeDevice ){
 
-		card.idCard=params.idCard;
+		card.idCard=params.id_card;
 		card.codeBus=params.codeBus;
 		card.idDevice=params.idDevice;
 		card.timeDevice=params.timeDevice;
-		card.timestamp=params.timestamp;	
 
 		card.save((err,cardStored)=>{
 			if (err) {
@@ -69,7 +68,7 @@ function getCards(req,res){
 				res.status(404).send({menssage: 'No hay cardes'});
 			}else{
 				res.status(200).send({cards});
-			}			
+			}
 		}
 	})
 }
@@ -85,7 +84,7 @@ function getCard(req,res){
 				res.status(404).send({menssage: 'El card no existe'});
 			}else{
 				res.status(200).send({card});
-			}			
+			}
 		}
 	});
 }
@@ -102,7 +101,7 @@ function updateCard(req,res){
 				res.status(404).send({menssage: 'No se pudo actualizar el card'});
 			}else{
 				res.status(200).send({card:cardUpdate});
-			}			
+			}
 		}
 	});
 }
